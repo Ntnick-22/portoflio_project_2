@@ -1,0 +1,11 @@
+{
+    "Changes": [{                                              
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "app.nt-nick.link",
+        "Type": "CNAME",
+        "TTL": 300,
+        "ResourceRecords": [{"Value": "k8s-workshop-mainlb-b7f24ec5a6-1453476015.eu-west-1.elb.amazonaws.com"}]
+      }
+    }]
+  }
