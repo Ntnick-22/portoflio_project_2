@@ -1,8 +1,6 @@
-<<<<<<< Updated upstream
-# portoflio_project_2
-Three-tier web application deployed on AWS EKS using Terraform IaC, Kubernetes, Helm, and monitored with Prometheus &amp; Grafana. CI/CD pipeline with GitHub Actions.
-=======
 # three-tier-eks-iac
+
+Three-tier web application deployed on AWS EKS using Terraform IaC, Kubernetes, Helm, and monitored with Prometheus & Grafana. CI/CD pipeline with GitHub Actions.
 
 # Prerequisite 
 
@@ -53,48 +51,48 @@ kubectl logs -f -n kube-system \
   --profile eks-admin -->
 
 
-# Buid Docker image :
+# Build Docker image :
 **For Mac:**
 
 ```
 export DOCKER_CLI_EXPERIMENTAL=enabled
-aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/w8u5e4v2
+aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/q6o1a9u8
 ```
 
-Buid Front End :
+Build Front End :
 
 ```
 docker buildx build --platform linux/amd64 -t workshop-frontend:v1 . 
-docker tag workshop-frontend:v1 public.ecr.aws/w8u5e4v2/workshop-frontend:v1
-docker push public.ecr.aws/w8u5e4v2/workshop-frontend:v1
+docker tag workshop-frontend:v1 public.ecr.aws/q6o1a9u8/workshop-frontend:v1
+docker push public.ecr.aws/q6o1a9u8/workshop-frontend:v1
 ```
 
 
-Buid Back End :
+Build Back End :
 
 ```
 docker buildx build --platform linux/amd64 -t workshop-backend:v1 . 
-docker tag workshop-backend:v1 public.ecr.aws/w8u5e4v2/workshop-backend:v1
-docker push public.ecr.aws/w8u5e4v2/workshop-backend:v1
+docker tag workshop-backend:v1 public.ecr.aws/q6o1a9u8/workshop-backend:v1
+docker push public.ecr.aws/q6o1a9u8/workshop-backend:v1
 ```
 
 **For Linux/Windows:**
 
-Buid Front End :
+Build Front End :
 
 ```
 docker build -t workshop-frontend:v1 . 
-docker tag workshop-frontend:v1 public.ecr.aws/w8u5e4v2/workshop-frontend:v1
-docker push public.ecr.aws/w8u5e4v2/workshop-frontend:v1
+docker tag workshop-frontend:v1 public.ecr.aws/q6o1a9u8/workshop-frontend:v1
+docker push public.ecr.aws/q6o1a9u8/workshop-frontend:v1
 ```
 
 
-Buid Back End :
+Build Back End :
 
 ```
 docker build -t workshop-backend:v1 . 
-docker tag workshop-backend:v1 public.ecr.aws/w8u5e4v2/workshop-backend:v1
-docker push public.ecr.aws/w8u5e4v2/workshop-backend:v1
+docker tag workshop-backend:v1 public.ecr.aws/q6o1a9u8/workshop-backend:v1
+docker push public.ecr.aws/q6o1a9u8/workshop-backend:v1
 ```
 
 
@@ -110,7 +108,7 @@ kubectl config set-context --current --namespace workshop
 
 **To create MongoDB Resources**
 ```
-cd k8s_manifests/mongo_v1
+cd k8s_manifests/mongo
 kubectl apply -f secrets.yaml
 kubectl apply -f deploy.yaml
 kubectl apply -f service.yaml
@@ -122,12 +120,12 @@ Create NodeJs API deployment by running the following command:
 ```
 kubectl apply -f backend-deployment.yaml
 kubectl apply -f backend-service.yaml
-``
+```
 
 
 **Frontend setup**
 
-Create the Frontend  resource. In the terminal run the following command:
+Create the Frontend resource. In the terminal run the following command:
 ```
 kubectl apply -f frontend-deployment.yaml
 kubectl apply -f frontend-service.yaml
@@ -139,8 +137,10 @@ kubectl apply -f full_stack_lb.yaml
 ```
 
 
-# Any issue with the pods ? check logs:
+# Any issue with the pods? Check logs:
+```
 kubectl logs -f POD_ID -f
+```
 
 
 # Grafana setup 
@@ -149,5 +149,4 @@ Password: prom-operator
 
 Import Dashboard ID: 1860
 
-Exlore more at: https://grafana.com/grafana/dashboards/
->>>>>>> Stashed changes
+Explore more at: https://grafana.com/grafana/dashboards/
