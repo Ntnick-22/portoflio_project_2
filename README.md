@@ -2,6 +2,23 @@
 
 Three-tier web application deployed on AWS EKS using Terraform IaC, Kubernetes, Helm, and monitored with Prometheus & Grafana. CI/CD pipeline with GitHub Actions.
 
+# CI/CD Pipeline
+
+Three GitHub Actions workflows handle automated build and deployment:
+
+- **Frontend** (`frontend.yml`) — triggers on changes to `app/frontend/**`, builds and pushes Docker image to ECR, then restarts the frontend deployment on EKS
+- **Backend** (`backend.yml`) — triggers on changes to `app/backend/**`, builds and pushes Docker image to ECR, then restarts the API deployment on EKS
+- **Terraform** (`terraform.yml`) — triggers on changes to `terraform/**`
+  - On pull request: runs `terraform plan` and posts the output as a PR comment
+  - On merge to main: runs `terraform apply` automatically
+
+**Required GitHub Secrets:**
+```
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
+AWS_REGION
+```
+
 # Prerequisite 
 
 **Install Kubectl**
